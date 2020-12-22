@@ -1,0 +1,31 @@
+@keyframes fadein {
+    from {
+        transform: translateY(25px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeout {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(25px);
+        opacity: 0;
+    }
+}
+
+.all-fadein {
+    animation: fadein .5s;
+    animation-fill-mode: both;
+}
+
+.all-fadeout {
+    animation: fadeout .5s;
+    animation-fill-mode: both;
+}

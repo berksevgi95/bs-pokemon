@@ -1,0 +1,8 @@
+.header {
+    position: fixed;
+    height: 150px;
+    top: 0px;
+    background: linear-gradient(180deg, rgba(245,248,252,1) 50%, rgba(255,255,255,0) 100%);
+    left: calc(25% - 20px);
+    right: calc(25% - 20px);
+}

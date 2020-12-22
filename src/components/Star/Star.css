@@ -1,0 +1,19 @@
+.star {
+    display: flex;
+}
+
+.star .filled {
+    height: 15px;
+    width: 15px;
+    background-color: #51beb3 !important;
+    border-radius: 50%;
+    margin: 1px
+}
+
+.star .empty {
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    background-color: lightgray;
+    margin: 1px
+}
