@@ -1,19 +1,33 @@
 @keyframes fadein {
     from {
+        transform: translateY(25px);
         opacity: 0;
-        transform: translateY(-20px);
     }
     to {
+        transform: translateY(0);
         opacity: 1;
-        transform: translateY(0px);
     }
 }
+
+@keyframes fadeout {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(25px);
+        opacity: 0;
+    }
+}
+
 
 html, body {
     height: 100%;
     width: 100%;
     margin: 0px;
     background-color: #F5F8FC;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 400;
 }
 
 #app {
@@ -21,6 +35,12 @@ html, body {
     height: 100%;
     width: 50%;
     position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.color-white {
+    color: white !important;
 }
 
 @media only screen and (max-width: 960px) {

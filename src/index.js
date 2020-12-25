@@ -7,8 +7,9 @@ import {
     Redirect
 } from "react-router-dom";
 
-import All from './views/All/All';
+import Pokemons from './views/Pokemons/Pokemons';
 import MyPokemons from './views/MyPokemons/MyPokemons';
+import PokemonDetail from './views/PokemonDetail/PokemonDetail';
 
 import './styles.css'
 import Header from './components/Header/Header';
@@ -21,10 +22,13 @@ const App = () => {
             <Main>
                 <Switch>
                     <Route path="/" exact>
-                        <Redirect to="/all" />
+                        <Redirect to="/pokemons" />
                     </Route>
-                    <Route exact path="/all">
-                        <All />
+                    <Route exact path="/pokemons">
+                        <Pokemons />
+                    </Route>
+                    <Route exact path="/pokemons/:id">
+                        <PokemonDetail />
                     </Route>
                     <Route path="/my-pokemons">
                         <MyPokemons />

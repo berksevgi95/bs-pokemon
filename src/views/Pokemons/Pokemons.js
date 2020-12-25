@@ -1,10 +1,13 @@
 import React from 'react'
-import Card from '../../components/Card/Card'
+import { withRouter } from 'react-router-dom'
+import PokemonCard from '../../components/PokemonCard/PokemonCard'
 import Axios from '../../utils/axios'
 
 import './styles.css'
 
-const All = () => {
+const All = ({
+    history
+}) => {
 
     const [pokemons, setPokemons] = React.useState([])
     const [render, setRender] = React.useState(false)
@@ -16,23 +19,24 @@ const All = () => {
             })
     }, [])
 
-    const onClick = () => {
+    const onClick = (detail) => {
         setRender(true)
+        setTimeout(() => {
+            history.push(`/pokemons/${detail.id}`)
+        }, 500)
     }
-
-    console.log(render)
 
     return (
         <div className={render ? 'all-fadeout' : 'all-fadein'}>
             {pokemons && pokemons.length > 0 && pokemons.map(pokemon => (
-                <Card
+                <PokemonCard
                     onClick={onClick}
                     key={pokemon.name}
-                    data={pokemon} 
+                    pokemon={pokemon} 
                 />
             ))}
         </div>
     )
 }
 
-export default All;
+export default withRouter(All);
