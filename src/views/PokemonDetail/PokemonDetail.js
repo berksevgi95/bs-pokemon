@@ -1,7 +1,6 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
 import Tabs from '../../components/Tabs/Tabs'
-import AverageColor from '../../utils/average-color'
 import Axios from '../../utils/axios'
 
 import './styles.css'
@@ -15,7 +14,6 @@ const PokemonDetail = ({
     const [loading, setLoading] = React.useState(false)
     const [detail, setDetail] = React.useState(null)
     const [activeTab, setActiveTab] = React.useState(null)
-    const [background, setBackground] = React.useState({})
 
     const [abilities, setAbilities] = React.useState(null)
     const [moves, setMoves] = React.useState(null)
@@ -25,6 +23,7 @@ const PokemonDetail = ({
         Axios.get(`/pokemon/${match.params.id}`)
             .then((result) => {
                 setDetail(result.data)
+                setLoading(false)
             })
     }, [])
 
@@ -49,18 +48,11 @@ const PokemonDetail = ({
         }
     }, [activeTab])
 
-    const handleOnLoad = (e) => {
-        AverageColor(e.target).then(colorObj => {
-            setBackground(colorObj)
-            setLoading(false)
-        })
-    }
-
     return (
         <div className="pokemon-detail" style={{
             minHeight: '100%',
-            borderTopLeftRadius: 25,
-            borderTopRightRadius: 25,
+            borderTopLeftRadius: 30,
+            borderTopRightRadius: 30,
             background: 'white',
             boxShadow: '0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)',
             display: 'flex',
@@ -75,7 +67,7 @@ const PokemonDetail = ({
                     width: '100%',
                     height: '100%',
                     background: 'white',
-                    borderRadius: 25,
+                    borderRadius: 30,
                 }}>
                     Loading
                 </div>
@@ -87,7 +79,7 @@ const PokemonDetail = ({
                     <div style={{
                         height: 200,
                         width: '100%',
-                        background: `rgb(${background.r},${background.g},${background.b}, .9)`,
+                        background: 'linear-gradient(90deg, rgba(99,91,255,1) 0%, rgba(21,203,202,1) 100%)',
                         borderTopLeftRadius: 30,
                         borderTopRightRadius: 30,
                         position: 'relative',
@@ -101,7 +93,6 @@ const PokemonDetail = ({
                                 float: 'right'
                             }}
                             src={detail.sprites.front_default}
-                            onLoad={handleOnLoad}
                         />
                         <h1
                             style={{

@@ -6,4 +6,17 @@
     left: 0px;
     right: 0px;
     z-index: 1;
+    display: flex;
+}
+
+.header-content {
+    margin: auto;
+    position: relative;
+}
+
+.header-content .link {
+    text-decoration: none;
+    color: black;
+    margin: 0px 5px;
+    font-weight: 600;
 }

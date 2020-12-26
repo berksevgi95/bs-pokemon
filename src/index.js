@@ -33,9 +33,11 @@ const App = () => {
                     <Route path="/my-pokemons">
                         <MyPokemons />
                     </Route>
+                    <Route exact path="/my-pokemons/:id">
+                        <PokemonDetail />
+                    </Route>
                 </Switch>
             </Main>
-            
         </Router>
     )
 }

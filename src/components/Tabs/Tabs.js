@@ -46,7 +46,7 @@ const Tabs = ({
                     <div style={{
                         position: 'absolute',
                         bottom:0,
-                        border: '1px solid gray',
+                        border: '1px solid black',
                         transition: '.3s',
                         left: tabMark.left,
                         width: tabMark.width,

@@ -39,10 +39,6 @@ html, body {
     flex-direction: column;
 }
 
-.color-white {
-    color: white !important;
-}
-
 @media only screen and (max-width: 960px) {
     #app {
         width: 75%;
