@@ -11,11 +11,13 @@ const All = ({
 
     const [pokemons, setPokemons] = React.useState([])
     const [render, setRender] = React.useState(false)
+    const [next, setNext] = React.useState(null)
 
     React.useEffect(() => {
         Axios.get('/pokemon')
             .then((result) => {
                 setPokemons(result.data.results)
+                setNext(result.data.next)
             })
     }, [])
 
@@ -26,8 +28,16 @@ const All = ({
         }, 500)
     }
 
+    const showMore = () => {
+        Axios.get(next)
+            .then((result) => {
+                setPokemons([...pokemons, ...result.data.results])
+                setNext(result.data.next)
+            })
+    }
+
     return (
-        <div className={render ? 'all-fadeout' : 'all-fadein'}>
+        <div style={{height: '100%', paddingBottom: 50}} className={render ? 'all-fadeout' : 'all-fadein'}>
             {pokemons && pokemons.length > 0 && pokemons.map(pokemon => (
                 <PokemonCard
                     onClick={onClick}
@@ -35,6 +45,21 @@ const All = ({
                     pokemon={pokemon} 
                 />
             ))}
+            <div 
+                style={{
+                    position: 'absolute',
+                    bottom: 0,
+                    width: '100%',
+                    height: 50,
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                }}
+                onClick={showMore}>
+                    <span>
+                        Show More
+                    </span>
+            </div>
         </div>
     )
 }
