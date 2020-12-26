@@ -14,9 +14,10 @@ import PokemonDetail from './views/PokemonDetail/PokemonDetail';
 import './styles.css'
 import Header from './components/Header/Header';
 import Main from './components/Main/Main';
+import Provider from './utils/context';
 
-const App = () => {
-    return (
+const App = () => (
+    <Provider>
         <Router>
             <Header></Header>
             <Main>
@@ -30,7 +31,7 @@ const App = () => {
                     <Route exact path="/pokemons/:id">
                         <PokemonDetail />
                     </Route>
-                    <Route path="/my-pokemons">
+                    <Route exact path="/my-pokemons">
                         <MyPokemons />
                     </Route>
                     <Route exact path="/my-pokemons/:id">
@@ -39,8 +40,8 @@ const App = () => {
                 </Switch>
             </Main>
         </Router>
-    )
-}
+    </Provider>
+)
 
 ReactDOM.render(
     <App />,

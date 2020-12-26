@@ -1,20 +1,26 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+import * as SolidIcons from '@fortawesome/free-solid-svg-icons'
+import * as RegularIcons from '@fortawesome/free-regular-svg-icons'
+
 import React from 'react'
 import { withRouter } from 'react-router-dom'
 import Tabs from '../../components/Tabs/Tabs'
 import Axios from '../../utils/axios'
 
 import './styles.css'
+import {Context} from '../../utils/context'
 
 const PokemonDetail = ({
     history,
     match,
-    ...props
 }) => {
+
+    const { isAdded, addRemoveMyPokemonsList } = React.useContext(Context)
 
     const [loading, setLoading] = React.useState(false)
     const [detail, setDetail] = React.useState(null)
     const [activeTab, setActiveTab] = React.useState(null)
-
     const [abilities, setAbilities] = React.useState(null)
     const [moves, setMoves] = React.useState(null)
 
@@ -79,7 +85,7 @@ const PokemonDetail = ({
                     <div style={{
                         height: 200,
                         width: '100%',
-                        background: 'linear-gradient(90deg, rgba(99,91,255,1) 0%, rgba(21,203,202,1) 100%)',
+                        background: 'rgba(99,91,255,1)',
                         borderTopLeftRadius: 30,
                         borderTopRightRadius: 30,
                         position: 'relative',
@@ -89,22 +95,49 @@ const PokemonDetail = ({
                             style={{
                                 width: 150,
                                 margin: 'auto',
-                                marginRight: 0,
+                                marginRight: 20,
                                 float: 'right'
                             }}
                             src={detail.sprites.front_default}
                         />
-                        <h1
-                            style={{
-                                position: 'absolute',
-                                top: 'calc(100% - 50px)',
-                                left: 30,
-                                margin: 0,
-                                color: 'white'
-                            }}
-                        >
-                            {detail.name}
-                        </h1>
+                        <div style={{
+                            position: 'absolute',
+                            top: 'calc(100% - 50px)',
+                            left: 30,
+                            color: 'white',
+                            display: 'flex',
+                            alignItems: 'center'
+                        }}> 
+                            <h1
+                                style={{margin: 0}}
+                            >
+                                {detail.name}
+                            </h1>
+                            <button style={{
+                                background: 0,
+                                border: 'none',
+                                display: 'flex',
+                                color: 'white',
+                                marginLeft: 10
+                            }} onClick={() => {
+                                addRemoveMyPokemonsList(detail)
+                            }}>
+                                {!isAdded(detail) ? (
+                                    <FontAwesomeIcon
+                                        style={{margin: 'auto'}}
+                                        size="2x"
+                                        icon={RegularIcons.faHeart}
+                                    />
+                                ) : (
+                                    <FontAwesomeIcon
+                                        style={{margin: 'auto'}}
+                                        size="2x"
+                                        icon={SolidIcons.faHeart}
+                                    />
+                                )}
+                            </button>
+                        </div>
+                        
                     </div>
                     <div style={{
                         width: '100%',
@@ -163,6 +196,32 @@ const PokemonDetail = ({
                                     </div>
                                     <div>
                                         {detail.base_experience}
+                                    </div>
+                                </div>
+                                <div style={{
+                                    display: 'flex',
+                                    justifyContent: 'space-between',
+                                    padding: '15px 30px'
+                                }}>
+                                    <div>
+                                        Types
+                                    </div>
+                                    <div style={{width: '50%'}}>
+                                        {detail.types && detail.types.length > 0 && detail.types.map(typeObj => (
+                                            <h5
+                                                key={typeObj.type.name}
+                                                style={{
+                                                    margin: 0,
+                                                    marginLeft: 5,
+                                                    float: 'right',
+                                                    border: '1px solid black',
+                                                    padding: '3px 5px',
+                                                    borderRadius: 15
+                                                }}
+                                            >
+                                                {typeObj.type.name}
+                                            </h5>
+                                        ))}
                                     </div>
                                 </div>
                             </div>

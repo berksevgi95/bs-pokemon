@@ -16,11 +16,17 @@ const Card = ({
 
     React.useEffect(() => {
         setLoading(true)
-        Axios.get(pokemon.url)
-            .then((result) => {
-                setDetail(result.data)
-                setLoading(false)
-            })
+        if (pokemon.url) {
+            Axios.get(pokemon.url)
+                .then((result) => {
+                    setDetail(result.data)
+                    setLoading(false)
+                })
+        } else {
+            setDetail(pokemon)
+            setLoading(false)
+        }
+        
     }, [])
 
 
@@ -60,7 +66,6 @@ const Card = ({
                         </div>
                         <div style={{width: '40%', display: 'flex'}}>
                             <img
-                                crossOrigin="anonymous"
                                 id={detail.sprites.front_default}
                                 style={{margin: 'auto', width: '100%'}}
                                 src={detail.sprites.front_default}

@@ -14,7 +14,6 @@ const Header = ({
         document.body.onscroll = (e) => {
             const measures = e.target.body.getBoundingClientRect()
             setLinkPosition(measures.top < -50 ? 50 : -measures.top)
-            console.log()
         }
     }, [])
 

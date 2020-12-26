@@ -5,7 +5,7 @@ import Axios from '../../utils/axios'
 
 import './styles.css'
 
-const All = ({
+const Pokemons = ({
     history
 }) => {
 
@@ -64,4 +64,4 @@ const All = ({
     )
 }
 
-export default withRouter(All);
+export default withRouter(Pokemons);
