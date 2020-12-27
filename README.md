@@ -13,7 +13,7 @@ To run application server:
 npm start
 ```
 
-Application will be served on `http://127.0.0.1:3000`
+Application will be served on `http://127.0.0.1:8080`
 
 There are also several 3rd party npm modules used in this project. Here is the full list:
 

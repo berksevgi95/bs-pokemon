@@ -1,5 +1,6 @@
 .my-pokemons {
-    padding-bottom: 50px;
+    height: 100%;
+    position: relative;
 }
 
 .all-fadein {
