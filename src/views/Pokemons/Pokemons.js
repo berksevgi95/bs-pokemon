@@ -45,6 +45,27 @@ const Pokemons = ({
                     pokemon={pokemon} 
                 />
             ))}
+            {pokemons.length === 0 && (
+                <div
+                    style={{
+                        position: 'absolute',
+                        height: '100%',
+                        width: '100%',
+                        display: 'flex'
+                    }}
+                >
+                    <div style={{
+                        margin: 'auto'
+                    }}>
+                        <h1 style={{textAlign: 'center'}}>
+                            ¯\_(ツ)_/¯
+                        </h1>
+                        <p style={{textAlign: 'center'}}>
+                            No Pokemons listed here
+                        </p>
+                    </div>
+                </div>
+            )}
             <div 
                 className="show-more"
                 onClick={showMore}
