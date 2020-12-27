@@ -24,6 +24,15 @@
 .message {
     animation: heartBeat .3s;
     animation-fill-mode: both;
+    background: #15cbca;
+    padding: 10px 15px;
+    position: fixed;
+    width: 250px;
+    z-index: 10;
+    border-radius: 15px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    display: flex;
+    align-items: center;
 }
 
 .message::before {
@@ -37,4 +46,8 @@
     border-top-color: transparent;
     border-left-color: transparent;
     border-right-color: transparent;
+}
+
+.message .title {
+    color: white;
 }

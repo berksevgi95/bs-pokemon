@@ -1,3 +1,7 @@
+.pokemon {
+    height: 100%;
+    padding-bottom: 50px;
+}
 
 .all-fadein {
     animation: fadein .5s;
@@ -7,4 +11,14 @@
 .all-fadeout {
     animation: fadeout .5s;
     animation-fill-mode: both;
+}
+
+.show-more {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

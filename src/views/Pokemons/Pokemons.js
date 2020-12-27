@@ -37,7 +37,7 @@ const Pokemons = ({
     }
 
     return (
-        <div style={{height: '100%', paddingBottom: 50}} className={render ? 'all-fadeout' : 'all-fadein'}>
+        <div className={`pokemon ${render ? 'all-fadeout' : 'all-fadein'}`}>
             {pokemons && pokemons.length > 0 && pokemons.map(pokemon => (
                 <PokemonCard
                     onClick={onClick}
@@ -46,16 +46,9 @@ const Pokemons = ({
                 />
             ))}
             <div 
-                style={{
-                    position: 'absolute',
-                    bottom: 0,
-                    width: '100%',
-                    height: 50,
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center'
-                }}
-                onClick={showMore}>
+                className="show-more"
+                onClick={showMore}
+            >
                     <span>
                         Show More
                     </span>

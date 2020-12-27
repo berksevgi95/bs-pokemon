@@ -28,9 +28,21 @@ const Header = ({
         }
     }, [location.pathname])
 
+
+    const getStyle = () => {
+        return {
+            left: tabMark.left,
+            width: tabMark.width,
+            top: tabMark.top,
+        }
+    }
+
     return (
         <header className="header">
-            <div style={{paddingBottom : linkPosition}} className="header-content">
+            <div
+                style={{paddingBottom : linkPosition}}
+                className="header-content"
+            >
                 <Link
                     id="pokemons"
                     to="/pokemons"
@@ -46,16 +58,10 @@ const Header = ({
                     My Pokemons
                 </Link>
                 {tabMark && (
-                    <div style={{
-                        position: 'absolute',
-                        bottom:0,
-                        border: '1px solid black',
-                        transition: '.3s',
-                        left: tabMark.left,
-                        width: tabMark.width,
-                        top: tabMark.top,
-                        height: 0
-                    }} />
+                    <div
+                        className="tab-mark"
+                        style={getStyle()}
+                    />
                 )}
             </div>
         </header>

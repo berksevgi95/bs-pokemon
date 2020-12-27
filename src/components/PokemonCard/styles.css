@@ -37,6 +37,20 @@
     display: flex;
 }
 
+.card-container .text {
+    width: 60%;
+}
+
+.card-container .image {
+    width: 40%;
+    display: flex;
+}
+
+.card-container .image > img {
+    margin: auto;
+    width: 100%;
+}
+
 @media only screen and (max-width: 960px) {
     .card-container {
         width: calc(50% - 30px);

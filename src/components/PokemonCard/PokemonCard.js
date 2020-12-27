@@ -39,16 +39,8 @@ const Card = ({
         <div className="card-container">
             <div className="card">
                 {loading && (
-                    <div style={{
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        width: '100%',
-                        height: '100%',
-                        background: 'white',
-                        borderRadius: 25,
-                    }}>
-                        Loading
+                    <div className="loading-container">
+                        <h3>Loading...</h3>
                     </div>
                 )}
                 {!detail ? (
@@ -58,16 +50,19 @@ const Card = ({
                         onClick={handleOnClick}
                         className="card-content"
                     >
-                        <div style={{width: '60%'}}>
-                            <h3>{detail.name}</h3>
+                        <div className="text">
+                            <h3>
+                                {detail.name}
+                            </h3>
                             {detail.types && detail.types.length > 0 && detail.types.map(typeObj => (
-                                <h5 key={typeObj.type.name}>{typeObj.type.name}</h5>
+                                <h5 key={typeObj.type.name}>
+                                    {typeObj.type.name}
+                                </h5>
                             ))}
                         </div>
-                        <div style={{width: '40%', display: 'flex'}}>
+                        <div className="image">
                             <img
                                 id={detail.sprites.front_default}
-                                style={{margin: 'auto', width: '100%'}}
                                 src={detail.sprites.front_default}
                             />
                         </div>

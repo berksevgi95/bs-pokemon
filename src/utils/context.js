@@ -19,14 +19,12 @@ const Provider = ({
             sessionStorage.setItem('my-pokemons', JSON.stringify(
                 myPokemons.filter(pokemon => pokemon.id !== newPokemon.id)
             ))
-            // return false
         } else {
             setMyPokemons([...myPokemons, newPokemon])
             sessionStorage.setItem('my-pokemons', JSON.stringify(
                 [...myPokemons, newPokemon]
             ))
             messageRef.current.fire(document.getElementById('my-pokemons'), `${newPokemon.name} has been added to My Pokemons list`)
-            // return true
         }
     }
 

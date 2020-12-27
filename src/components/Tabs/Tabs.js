@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './styles.css'
+
 const Tabs = ({
     tabs,
     onClickTab,
@@ -14,48 +16,67 @@ const Tabs = ({
         setTabMark({left: tab.offsetLeft, width: tab.offsetWidth, top: tab.offsetHeight + tab.offsetTop})
     }, [])
 
+    const handleOnClick = (tab, index) => (e) => {
+        setTabIndex(index)
+        setTabMark({
+            left: e.target.offsetLeft,
+            width: e.target.offsetWidth,
+            top: e.target.offsetHeight + e.target.offsetTop
+        })
+        if (onClickTab)
+            onClickTab(tab, index)
+    }
+
+    const handleOnChange = (e) => {
+        const index = tabs.indexOf(e.target.value)
+        setTabIndex(index)
+        if (onClickTab)
+            onClickTab(e.target.value, index)
+    }
+
+    const getStyle = () => {
+        return {
+            left: tabMark.left,
+            width: tabMark.width,
+            top: tabMark.top,
+        }
+    }
+
     return (
-        <div style={{
-            display: 'flex',
-            flexDirection:'column'
-        }}>
-            <div
-                style={{position: 'relative'}}
-            >
+        <div className="tabs-container">
+            <div className="tabs">
                 {tabs && tabs.length > 0 && tabs.map((tab, index) => (
                     <h4
                         id={index === tabIndex ? 'selected-tab' : 'tab'}
                         key={tab}
-                        style={{
-                            padding: '15px 30px',
-                            margin: 0,
-                            float: 'left',
-                            cursor: 'pointer'
-                        }}
-                        onClick={(e) => {
-                            setTabIndex(index)
-                            setTabMark({left: e.target.offsetLeft, width: e.target.offsetWidth, top: e.target.offsetHeight + e.target.offsetTop})
-                            if (onClickTab)
-                                onClickTab(tab, index)
-                        }}
+                        className="tab-title"
+                        onClick={handleOnClick(tab, index)}
                     >
                         {tab}
                     </h4>
                 ))}
                 {tabMark && (
-                    <div style={{
-                        position: 'absolute',
-                        bottom:0,
-                        border: '1px solid black',
-                        transition: '.3s',
-                        left: tabMark.left,
-                        width: tabMark.width,
-                        top: tabMark.top,
-                        height: 0
-                    }} />
+                    <div
+                        className="tab-mark"
+                        style={getStyle()}
+                    />
                 )}
             </div>
-            <div style={{marginTop: 20}}>
+            <select 
+                className="tab-selector"
+                onChange={handleOnChange}
+            >
+                {tabs && tabs.length > 0 && tabs.map(tab => (
+                    <option
+                        key={tab}
+                        value={tab}
+                    >
+                        {tab}
+                    </option>
+                ))}
+                
+            </select>
+            <div className="tab-content">
                 {children && 
                     children.length > 0 && 
                     children[tabIndex] && 
